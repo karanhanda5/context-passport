@@ -1,0 +1,68 @@
+{
+  "name": "Context Passport",
+  "description": "A personal context layer MCP server — carry your profile across any AI tool without re-explaining yourself every session.",
+  "version": "1.1.0",
+  "author": "karanhanda5",
+  "license": "MIT",
+  "repository": "https://github.com/karanhanda5/context-passport",
+  "tools": [
+    {
+      "name": "get_context",
+      "description": "Get the user's full personal context — name, role, expertise, goals, work style, and current project. Call this at the start of any session to understand who you're talking to.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "update_context",
+      "description": "Update one or more fields of the user's context. Only pass the fields you want to change — everything else stays as-is.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "role": { "type": "string" },
+          "working_on": { "type": "array", "items": { "type": "string" } },
+          "expertise": { "type": "array", "items": { "type": "string" } },
+          "work_style": { "type": "string" },
+          "goals": { "type": "string" },
+          "do_not": { "type": "array", "items": { "type": "string" } },
+          "current_project": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "description": { "type": "string" },
+              "status": { "type": "string" },
+              "next_steps": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "get_current_project",
+      "description": "Get just the user's current project — name, description, status, and next steps.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "sync_from_github",
+      "description": "Pull your latest GitHub activity into Context Passport — repos, languages, and open pull requests. Requires GITHUB_TOKEN env var.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "max_repos": { "type": "number", "default": 8 }
+        }
+      }
+    }
+  ],
+  "configuration": {
+    "GITHUB_TOKEN": {
+      "type": "string",
+      "description": "Optional. GitHub Personal Access Token for the sync_from_github tool. Create one at https://github.com/settings/tokens with repo scope.",
+      "required": false
+    }
+  }
+}
