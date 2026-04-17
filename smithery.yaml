@@ -1,0 +1,20 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      githubToken:
+        type: string
+        title: GitHub Personal Access Token
+        description: >
+          Optional. Needed for the sync_from_github tool.
+          Create one at https://github.com/settings/tokens
+          with "repo" scope (or "public_repo" for public repos only).
+  commandFunction: |-
+    (config) => ({
+      command: "node",
+      args: ["server.js"],
+      env: {
+        GITHUB_TOKEN: config.githubToken ?? ""
+      }
+    })

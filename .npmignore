@@ -1,0 +1,5 @@
+# Don't publish personal data or local config
+context.json
+.claude/
+node_modules/
+*.log
