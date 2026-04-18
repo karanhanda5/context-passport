@@ -1,9 +1,9 @@
 {
-  "name": "Context Passport",
+  "serverInfo": {
+    "name": "context-passport",
+    "version": "1.1.0"
+  },
   "description": "A personal context layer MCP server — carry your profile across any AI tool without re-explaining yourself every session.",
-  "version": "1.1.0",
-  "author": "karanhanda5",
-  "license": "MIT",
   "repository": "https://github.com/karanhanda5/context-passport",
   "tools": [
     {
@@ -57,12 +57,5 @@
         }
       }
     }
-  ],
-  "configuration": {
-    "GITHUB_TOKEN": {
-      "type": "string",
-      "description": "Optional. GitHub Personal Access Token for the sync_from_github tool. Create one at https://github.com/settings/tokens with repo scope.",
-      "required": false
-    }
-  }
+  ]
 }
